@@ -2,6 +2,7 @@ package me.arycer.leaguetracker.service;
 
 import me.arycer.leaguetracker.client.RiotApiClient;
 import me.arycer.leaguetracker.dto.leaguetracker.LTProfileDto;
+import me.arycer.leaguetracker.dto.leaguetracker.Region;
 import me.arycer.leaguetracker.dto.riot.LeagueEntryDTO;
 import me.arycer.leaguetracker.dto.riot.RiotAccountDto;
 import me.arycer.leaguetracker.dto.riot.SummonerDto;
@@ -16,9 +17,9 @@ public class LTProfilesService {
         this.riotApiClient = riotApiClient;
     }
 
-    public LTProfileDto getProfile(String accountName, String tagline) {
-        RiotAccountDto riotAccount = riotApiClient.fetchRiotAccount(accountName, tagline);
-        SummonerDto summoner = riotApiClient.fetchSummonerByPuuid(riotAccount.getPuuid());
+    public LTProfileDto getProfile(Region region, String accountName, String tagline) {
+        RiotAccountDto riotAccount = riotApiClient.fetchRiotAccount(region, accountName, tagline);
+        SummonerDto summoner = riotApiClient.fetchSummonerByPuuid(region, riotAccount.getPuuid());
 
         LTProfileDto ltProfileDto = new LTProfileDto();
         ltProfileDto.setUsername(riotAccount.getGameName());
@@ -26,7 +27,7 @@ public class LTProfilesService {
         ltProfileDto.setProfileIconId(summoner.getProfileIconId());
         ltProfileDto.setLevel(summoner.getSummonerLevel());
 
-        LeagueEntryDTO[] leagueEntries = riotApiClient.fetchLeagueEntries(summoner.getId());
+        LeagueEntryDTO[] leagueEntries = riotApiClient.fetchLeagueEntries(region, summoner.getId());
 
         LeagueEntryDTO soloQ = null;
         for (LeagueEntryDTO leagueEntry : leagueEntries) {

@@ -1,6 +1,7 @@
 package me.arycer.leaguetracker.controller;
 
 import me.arycer.leaguetracker.dto.leaguetracker.LTProfileDto;
+import me.arycer.leaguetracker.dto.leaguetracker.Region;
 import me.arycer.leaguetracker.service.LTProfilesService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,10 @@ public class LTProfileController {
         this.profilesService = profilesService;
     }
 
-    @GetMapping("/{accountName}/{tagline}")
-    public ResponseEntity<LTProfileDto> getSummonerByName(@PathVariable String accountName, @PathVariable String tagline) {
-        LTProfileDto summoner = profilesService.getProfile(accountName, tagline);
+    @GetMapping("/{region}/{accountName}/{tagline}")
+    public ResponseEntity<LTProfileDto> getSummonerByName(@PathVariable String region, @PathVariable String accountName, @PathVariable String tagline) {
+        Region regionEnum = Region.valueOf(region.toUpperCase());
+        LTProfileDto summoner = profilesService.getProfile(regionEnum, accountName, tagline);
         return ResponseEntity.ok(summoner);
     }
 }

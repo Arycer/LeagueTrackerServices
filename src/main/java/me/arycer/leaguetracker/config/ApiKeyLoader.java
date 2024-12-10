@@ -14,9 +14,6 @@ public class ApiKeyLoader {
             return cachedApiKey;
         }
 
-        File file = new File(API_KEY_FILE);
-        System.out.println(file.toPath().toAbsolutePath());
-
         Properties properties = new Properties();
         try (FileInputStream input = new FileInputStream(API_KEY_FILE)) {
             properties.load(input);
