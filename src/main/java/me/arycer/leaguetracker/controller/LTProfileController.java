@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/profiles")
 public class LTProfileController {
-
     private final LTProfilesService profilesService;
 
     public LTProfileController(LTProfilesService profilesService) {

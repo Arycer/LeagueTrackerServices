@@ -2,9 +2,10 @@ package me.arycer.leaguetracker.client;
 
 import me.arycer.leaguetracker.config.ApiKeyLoader;
 import me.arycer.leaguetracker.dto.leaguetracker.Region;
-import me.arycer.leaguetracker.dto.riot.LeagueEntryDTO;
-import me.arycer.leaguetracker.dto.riot.RiotAccountDto;
-import me.arycer.leaguetracker.dto.riot.SummonerDto;
+import me.arycer.leaguetracker.dto.riot.ddragon.VersionsDTO;
+import me.arycer.leaguetracker.dto.riot.league.LeagueEntryDTO;
+import me.arycer.leaguetracker.dto.riot.account.RiotAccountDto;
+import me.arycer.leaguetracker.dto.riot.account.SummonerDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,5 +33,13 @@ public class RiotApiClient {
         String url = "https://%s.api.riotgames.com/lol/league/v4/entries/by-summoner/%s?api_key=%s"
                 .formatted(region.getApiName(), encryptedSummonerId, ApiKeyLoader.getApiKey());
         return restTemplate.getForObject(url, LeagueEntryDTO[].class);
+    }
+
+    public VersionsDTO fetchVersions() {
+        String url = "https://ddragon.leagueoflegends.com/api/versions.json";
+        String[] versions = restTemplate.getForObject(url, String[].class);
+        VersionsDTO versionsDTO = new VersionsDTO();
+        versionsDTO.setVersions(versions);
+        return versionsDTO;
     }
 }

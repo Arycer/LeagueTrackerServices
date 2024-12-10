@@ -3,9 +3,9 @@ package me.arycer.leaguetracker.service;
 import me.arycer.leaguetracker.client.RiotApiClient;
 import me.arycer.leaguetracker.dto.leaguetracker.LTProfileDto;
 import me.arycer.leaguetracker.dto.leaguetracker.Region;
-import me.arycer.leaguetracker.dto.riot.LeagueEntryDTO;
-import me.arycer.leaguetracker.dto.riot.RiotAccountDto;
-import me.arycer.leaguetracker.dto.riot.SummonerDto;
+import me.arycer.leaguetracker.dto.riot.league.LeagueEntryDTO;
+import me.arycer.leaguetracker.dto.riot.account.RiotAccountDto;
+import me.arycer.leaguetracker.dto.riot.account.SummonerDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +26,7 @@ public class LTProfilesService {
         ltProfileDto.setTagline(riotAccount.getTagLine());
         ltProfileDto.setProfileIconId(summoner.getProfileIconId());
         ltProfileDto.setLevel(summoner.getSummonerLevel());
+        ltProfileDto.setGameVersion(riotApiClient.fetchVersions().getVersions()[0]);
 
         LeagueEntryDTO[] leagueEntries = riotApiClient.fetchLeagueEntries(region, summoner.getId());
 

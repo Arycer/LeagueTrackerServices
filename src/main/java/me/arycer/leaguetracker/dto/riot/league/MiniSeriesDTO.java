@@ -1,4 +1,4 @@
-package me.arycer.leaguetracker.dto.riot;
+package me.arycer.leaguetracker.dto.riot.league;
 
 import lombok.Data;
 
