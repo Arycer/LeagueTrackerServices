@@ -1,4 +1,4 @@
-package me.arycer.leaguetracker.dto;
+package me.arycer.leaguetracker.dto.riot;
 
 import lombok.Data;
 
@@ -7,8 +7,4 @@ public class RiotAccountDto {
     private String puuid;
     private String gameName;
     private String tagLine;
-
-    public String getRiotId() {
-        return "%s#%s".formatted(gameName, tagLine);
-    }
 }

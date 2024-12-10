@@ -1,4 +1,4 @@
-package me.arycer.leaguetracker.services;
+package me.arycer.leaguetracker.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

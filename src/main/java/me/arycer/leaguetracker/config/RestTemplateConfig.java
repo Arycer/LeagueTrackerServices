@@ -1,4 +1,4 @@
-package me.arycer.leaguetracker.services.config;
+package me.arycer.leaguetracker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
